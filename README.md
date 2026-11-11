@@ -4,6 +4,9 @@
 
 本次 Demo 收錄《武煉巔峰》正文第 1～164 章的重要人物，截止於第 164 章〈離經叛道〉。網站不提供小說原文，也不混入第 164 章以後的劇情。
 
+- GitHub Repository：<https://github.com/LinZKai/novel-character-atlas>
+- 公開網站：<https://linzkai.github.io/novel-character-atlas/>
+
 ## 專案特色
 
 - 人物姓名、別名、身分與勢力搜尋。
