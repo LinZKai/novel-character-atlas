@@ -1,0 +1,14 @@
+{
+  "id": "martial-peak",
+  "title": "武煉巔峰",
+  "author": "莫默",
+  "coverageFromChapter": 1,
+  "coverageThroughChapter": 164,
+  "coverageLabel": "正文第 1～164 章",
+  "coverageEndTitle": "離經叛道",
+  "sourceFileThroughOuterChapter": 162,
+  "chapterNumberingNote": "網站採用正文標題章號。來源 TXT 的外層第 162 章對應正文第 164 章；來源檔缺少正文第 75、76、78 章，且外層第 152 章誤插正文第 109 章。缺少內容不推測。",
+  "sourceMode": "text-verified",
+  "description": "本次 Demo 聚焦凌霄閣初期、九陰凝元露事件與傳承洞天篇，截止於楊開準備離宗出遊以前。",
+  "disclaimer": "本網站為非官方、非商業的閱讀輔助專案；人物摘要皆為重新整理，不提供小說原文。"
+}

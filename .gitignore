@@ -1,0 +1,9 @@
+# Copyrighted source material is local-only.
+source-text/
+private-data/
+
+# Local development files.
+.DS_Store
+Thumbs.db
+.vscode/
+*.log

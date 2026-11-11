@@ -1,0 +1,32 @@
+[
+  {
+    "id": "high-heaven-pavilion",
+    "name": "凌霄閣",
+    "type": "宗門",
+    "summary": "故事初期的主要舞台，門內競爭激烈，長老派系也深刻影響弟子處境。",
+    "firstAppearanceChapter": 1,
+    "spoilerChapter": 74,
+    "sourceMode": "text-verified",
+    "sourceChapters": [1, 74]
+  },
+  {
+    "id": "bloody-battle-gang",
+    "name": "血戰幫",
+    "type": "幫派",
+    "summary": "與凌霄閣、風雨樓並立的勢力，胡家與龍家人物在前期事件中十分活躍。",
+    "firstAppearanceChapter": 37,
+    "spoilerChapter": 61,
+    "sourceMode": "text-verified",
+    "sourceChapters": [37, 38, 59, 61]
+  },
+  {
+    "id": "storm-house",
+    "name": "風雨樓",
+    "type": "宗門",
+    "summary": "三派之一，門下弟子亦進入傳承洞天，與另外兩派共同面對其中機緣與危險。",
+    "firstAppearanceChapter": 37,
+    "spoilerChapter": 126,
+    "sourceMode": "text-verified",
+    "sourceChapters": [37, 124, 126]
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "novel-character-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "閱絡｜小說人物關係誌",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "validate": "node scripts/validate-data.mjs"
+  }
+}

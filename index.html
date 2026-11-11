@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="閱絡是一個整理長篇小說人物、勢力與關係的閱讀輔助網站，第一部示範作品為《武煉巔峰》。"
+    />
+    <meta name="theme-color" content="#201c18" />
+    <title>閱絡｜小說人物關係誌</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#character-explorer">跳到人物探索</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="閱絡首頁">
+        <span class="brand-seal" aria-hidden="true">閱</span>
+        <span>
+          <strong>閱絡</strong>
+          <small>小說人物關係誌</small>
+        </span>
+      </a>
+      <nav aria-label="主要導覽">
+        <a href="#character-explorer">人物誌</a>
+        <a href="#relationship-map">關係圖</a>
+        <a href="#project-rules">延伸方式</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">當人物太多，先找回故事的脈絡</p>
+          <h1 id="hero-title">翻回江湖，<br /><em>不必從頭讀起。</em></h1>
+          <p class="hero-lead">
+            搜尋人物、辨認勢力、重建關係。閱絡把長篇小說裡容易遺忘的角色，整理成能持續擴充的人物譜。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#character-explorer">開始查人物</a>
+            <a class="button button-quiet" href="#relationship-map">查看關係圖</a>
+          </div>
+        </div>
+
+        <aside class="work-scope-card" aria-labelledby="scope-title">
+          <p class="scope-kicker">本次示範作品</p>
+          <h2 id="scope-title" data-work-title>武煉巔峰</h2>
+          <p class="scope-author">作者：<span data-work-author>莫默</span></p>
+          <div class="chapter-stamp">
+            <span>資料範圍</span>
+            <strong data-coverage-label>正文第 1～164 章</strong>
+            <small>截止〈<span data-coverage-end>離經叛道</span>〉</small>
+          </div>
+          <p data-work-description>
+            聚焦凌霄閣初期、九陰凝元露事件與傳承洞天篇，截止於楊開準備離宗出遊以前。
+          </p>
+          <p class="scope-note">所有摘要皆以此進度為準，不混入後續劇情。</p>
+        </aside>
+      </section>
+
+      <section class="stat-strip" aria-label="資料統計">
+        <div>
+          <strong id="character-count">18</strong>
+          <span>位重要人物</span>
+        </div>
+        <div>
+          <strong id="relationship-count">19</strong>
+          <span>條人物關係</span>
+        </div>
+        <div>
+          <strong id="faction-count">3</strong>
+          <span>個主要勢力</span>
+        </div>
+        <div>
+          <strong>164</strong>
+          <span>章以內資料</span>
+        </div>
+      </section>
+
+      <section class="content-section explorer-section" id="character-explorer" aria-labelledby="explorer-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">人物誌</p>
+            <h2 id="explorer-title">他是誰？從這裡找回記憶</h2>
+          </div>
+          <label class="work-picker">
+            <span>選擇作品</span>
+            <select id="work-select" aria-label="選擇作品"></select>
+          </label>
+        </div>
+
+        <div class="filter-panel" aria-label="人物篩選工具">
+          <label class="search-field">
+            <span>搜尋人物、別名或身分</span>
+            <input id="character-search" type="search" placeholder="例如：楊開、小師姐、血戰幫" autocomplete="off" />
+          </label>
+          <label>
+            <span>重要程度</span>
+            <select id="importance-filter">
+              <option value="all">全部</option>
+              <option value="primary">核心人物</option>
+              <option value="major">重要人物</option>
+              <option value="supporting">篇章人物</option>
+            </select>
+          </label>
+          <label>
+            <span>所屬勢力</span>
+            <select id="faction-filter">
+              <option value="all">全部勢力</option>
+            </select>
+          </label>
+          <button class="text-button" id="clear-filters" type="button">清除篩選</button>
+        </div>
+
+        <div class="results-meta" aria-live="polite">
+          <p id="results-count">正在載入人物資料…</p>
+          <span class="source-key"><i aria-hidden="true"></i> 原文核對</span>
+        </div>
+
+        <div class="character-grid" id="character-grid"></div>
+        <p class="empty-state" id="character-empty" hidden>找不到符合條件的人物，試著清除篩選。</p>
+      </section>
+
+      <section class="content-section relationship-section" id="relationship-map" aria-labelledby="relationship-title">
+        <div class="section-heading relationship-heading">
+          <div>
+            <p class="eyebrow">人物關係圖</p>
+            <h2 id="relationship-title">一條線，接回一段故事</h2>
+            <p>點選節點可查看人物資料；若圖面較小，也能使用下方的文字關係列表。</p>
+          </div>
+          <label>
+            <span>關係類型</span>
+            <select id="relationship-filter">
+              <option value="all">全部關係</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="relation-legend" id="relationship-legend" aria-label="關係圖例"></div>
+
+        <div class="graph-shell">
+          <svg
+            id="relationship-graph"
+            viewBox="0 0 1000 700"
+            role="img"
+            aria-labelledby="graph-title graph-description"
+          >
+            <title id="graph-title">《武煉巔峰》人物關係圖</title>
+            <desc id="graph-description">正文第一百六十四章以前的重要人物關係，可點選節點查看人物詳情。</desc>
+          </svg>
+        </div>
+
+        <details class="relationship-list-panel">
+          <summary>使用文字列表閱讀全部關係</summary>
+          <ol id="relationship-list" class="relationship-list"></ol>
+        </details>
+      </section>
+
+      <section class="content-section rules-section" id="project-rules" aria-labelledby="rules-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">不只做完這一頁</p>
+            <h2 id="rules-title">同一套規則，向兩個方向生長</h2>
+          </div>
+        </div>
+
+        <div class="growth-grid">
+          <article>
+            <span class="growth-number">01</span>
+            <h3>繼續同一部作品</h3>
+            <p>提高章節上限後，依格式加入新人物、勢力與關係，不必重做頁面或改寫介面。</p>
+            <code>data/works/martial-peak/</code>
+          </article>
+          <article>
+            <span class="growth-number">02</span>
+            <h3>收錄另一部作品</h3>
+            <p>建立新的作品資料夾並登記索引，搜尋、卡片與關係圖會沿用同一組元件。</p>
+            <code>data/works/{work-id}/</code>
+          </article>
+          <article>
+            <span class="growth-number">03</span>
+            <h3>沒有原文也能口述</h3>
+            <p>AI 先整理、追問與預覽；提供者確認後才寫入，避免把猜測當成正式設定。</p>
+            <code>整理 → 追問 → 預覽 → 確認 → 寫入</code>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="brand footer-brand">
+        <span class="brand-seal" aria-hidden="true">閱</span>
+        <span><strong>閱絡</strong><small>小說人物關係誌</small></span>
+      </div>
+      <p data-disclaimer>
+        本網站為非官方、非商業的閱讀輔助專案；人物摘要皆為重新整理，不提供小說原文。
+      </p>
+      <p>資料範圍：<span data-coverage-label>正文第 1～164 章</span>。</p>
+    </footer>
+
+    <dialog id="character-dialog" aria-labelledby="dialog-name">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="關閉人物詳情">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-message">請啟用 JavaScript 以使用人物搜尋、篩選及互動關係圖。</div>
+    </noscript>
+
+    <script type="module" src="assets/js/app.js"></script>
+  </body>
+</html>
