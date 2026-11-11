@@ -27,6 +27,11 @@ const elements = {
   relationshipList: document.querySelector("#relationship-list"),
   workShelf: document.querySelector("#work-shelf"),
   workCount: document.querySelector("#work-count"),
+  libraryView: document.querySelector("#library-view"),
+  workView: document.querySelector("#work-view"),
+  workNavigation: document.querySelector("#work-navigation"),
+  skipLink: document.querySelector("#skip-link"),
+  coverageChapterCount: document.querySelector("#coverage-chapter-count"),
   dialog: document.querySelector("#character-dialog"),
   dialogContent: document.querySelector("#dialog-content"),
   dialogClose: document.querySelector("#dialog-close")
@@ -86,7 +91,7 @@ function renderWorkShelf() {
         </button>`
     )
     .join("");
-  const emptySlots = Array.from({ length: Math.max(2, 3 - state.works.length) }, () =>
+  const emptySlots = Array.from({ length: Math.max(4, 5 - state.works.length) }, () =>
     '<div class="empty-book-slot" aria-label="待新增作品"><span>＋</span><strong>待新增</strong></div>'
   ).join("");
   elements.workShelf.innerHTML = bookMarkup + emptySlots;
@@ -94,9 +99,12 @@ function renderWorkShelf() {
   elements.workShelf.querySelectorAll("[data-work-id]").forEach((book) => {
     book.addEventListener("click", async () => {
       const workId = book.dataset.workId;
-      elements.workSelect.value = workId;
-      if (state.activeWork?.id !== workId) await loadWork(workId);
-      document.querySelector("#character-explorer").scrollIntoView({ behavior: "smooth", block: "start" });
+      const nextHash = `#work/${encodeURIComponent(workId)}`;
+      if (window.location.hash === nextHash) {
+        await showWork(workId);
+      } else {
+        window.location.hash = nextHash;
+      }
     });
   });
 }
@@ -112,6 +120,7 @@ function renderWorkMeta() {
   document.querySelector("#character-count").textContent = state.characters.length;
   document.querySelector("#relationship-count").textContent = state.relationships.length;
   document.querySelector("#faction-count").textContent = state.factions.length;
+  elements.coverageChapterCount.textContent = work.coverageThroughChapter;
   renderWorkShelf();
 }
 
@@ -280,13 +289,49 @@ async function loadWork(workId) {
   renderRelations();
 }
 
+function showLibrary() {
+  elements.libraryView.hidden = false;
+  elements.workView.hidden = true;
+  elements.workNavigation.hidden = true;
+  elements.skipLink.href = "#work-shelf";
+  elements.skipLink.textContent = "跳到作品書架";
+  document.title = "閱絡｜小說人物關係誌";
+  renderWorkShelf();
+  window.scrollTo({ top: 0 });
+}
+
+async function showWork(workId) {
+  if (!state.works.some((work) => work.id === workId)) {
+    window.location.hash = "#library";
+    return;
+  }
+  if (state.activeWork?.id !== workId) await loadWork(workId);
+  elements.workSelect.value = workId;
+  elements.libraryView.hidden = true;
+  elements.workView.hidden = false;
+  elements.workNavigation.hidden = false;
+  elements.skipLink.href = "#character-explorer";
+  elements.skipLink.textContent = "跳到人物索引";
+  document.title = `${state.activeWork.title}人物誌｜閱絡`;
+  window.scrollTo({ top: 0 });
+}
+
+async function route() {
+  const match = window.location.hash.match(/^#work\/([^/]+)$/);
+  if (match) {
+    await showWork(decodeURIComponent(match[1]));
+    return;
+  }
+  showLibrary();
+}
+
 async function init() {
   state.works = await fetchJson("data/works.json");
   elements.workSelect.innerHTML = state.works
     .map((work) => `<option value="${escapeHtml(work.id)}">${escapeHtml(work.title)}</option>`)
     .join("");
   renderWorkShelf();
-  await loadWork(state.works[0].id);
+  await route();
 }
 
 elements.search.addEventListener("input", (event) => {
@@ -305,7 +350,9 @@ elements.relationshipType.addEventListener("change", (event) => {
   state.relationshipType = event.target.value;
   renderRelations();
 });
-elements.workSelect.addEventListener("change", (event) => loadWork(event.target.value));
+elements.workSelect.addEventListener("change", (event) => {
+  window.location.hash = `#work/${encodeURIComponent(event.target.value)}`;
+});
 elements.clearFilters.addEventListener("click", () => {
   state.search = "";
   state.importance = "all";
@@ -319,6 +366,15 @@ elements.clearFilters.addEventListener("click", () => {
 elements.dialogClose.addEventListener("click", () => elements.dialog.close());
 elements.dialog.addEventListener("click", (event) => {
   if (event.target === elements.dialog) elements.dialog.close();
+});
+window.addEventListener("hashchange", () => {
+  route().catch((error) => console.error(error));
+});
+document.querySelectorAll('a[href="#character-explorer"], a[href="#relationship-map"]').forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+    document.querySelector(link.getAttribute("href"))?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 });
 
 init().catch((error) => {

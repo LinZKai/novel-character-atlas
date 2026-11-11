@@ -19,6 +19,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -157,6 +161,135 @@ nav a:hover {
 
 main {
   overflow: hidden;
+}
+
+.library-view {
+  min-height: calc(100svh - 76px);
+  padding: clamp(54px, 8vh, 92px) clamp(20px, 7vw, 100px) 72px;
+}
+
+.library-intro {
+  max-width: 1180px;
+  margin: 0 auto 30px;
+}
+
+.library-intro h1 {
+  margin-bottom: 8px;
+  font-size: clamp(44px, 6vw, 76px);
+}
+
+.library-intro > p:last-child {
+  color: var(--ink-soft);
+  font-size: clamp(16px, 1.6vw, 20px);
+}
+
+.library-bookshelf {
+  width: 100%;
+  max-width: 1180px;
+  min-height: 470px;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 52px) 30px;
+  margin: 0 auto;
+  border-radius: 8px 34px 10px 24px;
+}
+
+.library-bookshelf .shelf-heading {
+  margin-bottom: 38px;
+}
+
+.library-bookshelf .shelf-heading h2 {
+  font-size: clamp(24px, 3vw, 36px);
+}
+
+.library-bookshelf .work-shelf {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 28px);
+  min-height: 278px;
+  padding: 10px 18px 0;
+}
+
+.library-bookshelf .shelf-book {
+  height: 270px;
+}
+
+.library-bookshelf .book-cover {
+  padding: 28px 18px 22px;
+}
+
+.library-bookshelf .book-cover strong {
+  font-size: clamp(22px, 2.2vw, 31px);
+}
+
+.library-bookshelf .empty-book-slot {
+  height: 210px;
+}
+
+.shelf-hint {
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.work-masthead {
+  max-width: 1180px;
+  padding: clamp(64px, 9vw, 110px) clamp(20px, 4vw, 54px) 76px;
+  margin: 0 auto;
+}
+
+.work-masthead h1 {
+  margin: 8px 0 4px;
+  color: var(--red-dark);
+}
+
+.back-to-shelf {
+  display: inline-flex;
+  margin-bottom: 42px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.back-to-shelf:hover {
+  color: var(--red);
+}
+
+.work-byline {
+  color: var(--gold);
+  font-family: var(--serif);
+  font-weight: 700;
+}
+
+.work-description {
+  max-width: 720px;
+  color: var(--ink-soft);
+  font-size: 18px;
+}
+
+.work-coverage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 28px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.work-coverage strong {
+  color: var(--ink);
+}
+
+.work-view .stat-strip {
+  margin-top: 0;
+}
+
+.section-label {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.22em;
 }
 
 .hero {
@@ -1072,6 +1205,14 @@ dialog::backdrop {
     max-width: 680px;
   }
 
+  .library-bookshelf {
+    max-width: 820px;
+  }
+
+  .library-bookshelf .work-shelf {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .stat-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-right: 20px;
@@ -1116,6 +1257,60 @@ dialog::backdrop {
   .hero {
     padding-top: 62px;
     padding-bottom: 82px;
+  }
+
+  .library-view {
+    min-height: calc(100svh - 76px);
+    padding: 46px 16px 54px;
+  }
+
+  .library-intro {
+    margin-bottom: 22px;
+  }
+
+  .library-intro h1 {
+    font-size: 44px;
+  }
+
+  .library-bookshelf {
+    min-height: 0;
+    padding: 24px 16px 20px;
+  }
+
+  .library-bookshelf .shelf-heading {
+    margin-bottom: 22px;
+  }
+
+  .library-bookshelf .work-shelf {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    min-height: 190px;
+    padding: 4px 2px 0;
+  }
+
+  .library-bookshelf .shelf-book {
+    height: 184px;
+  }
+
+  .library-bookshelf .book-cover {
+    padding: 20px 8px 16px;
+  }
+
+  .library-bookshelf .book-cover strong {
+    font-size: 18px;
+  }
+
+  .library-bookshelf .empty-book-slot {
+    height: 142px;
+  }
+
+  .work-masthead {
+    padding-top: 54px;
+    padding-bottom: 54px;
+  }
+
+  .back-to-shelf {
+    margin-bottom: 34px;
   }
 
   h1 {

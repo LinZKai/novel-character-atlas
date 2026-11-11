@@ -12,41 +12,34 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#character-explorer">跳到人物探索</a>
+    <a class="skip-link" id="skip-link" href="#work-shelf">跳到作品書架</a>
 
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="閱絡首頁">
+      <a class="brand" href="#library" aria-label="回到閱絡作品書架">
         <span class="brand-seal" aria-hidden="true">閱</span>
         <span>
           <strong>閱絡</strong>
           <small>小說人物關係誌</small>
         </span>
       </a>
-      <nav aria-label="主要導覽">
-        <a href="#work-shelf-section">作品書架</a>
+      <nav id="work-navigation" aria-label="作品內容導覽" hidden>
+        <a href="#library">作品書架</a>
         <a href="#character-explorer">人物誌</a>
         <a href="#relationship-map">關係圖</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">當人物太多，先找回故事的脈絡</p>
-          <h1 id="hero-title">翻回江湖，<br /><em>不必從頭讀起。</em></h1>
-          <p class="hero-lead">
-            搜尋人物、辨認勢力、重建關係。閱絡把長篇小說裡容易遺忘的角色，整理成能持續擴充的人物譜。
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#character-explorer">開始查人物</a>
-            <a class="button button-quiet" href="#relationship-map">查看關係圖</a>
-          </div>
+      <section class="library-view" id="library-view" aria-labelledby="library-title">
+        <div class="library-intro">
+          <p class="eyebrow">閱絡 · 小說人物關係誌</p>
+          <h1 id="library-title">作品書架</h1>
+          <p>選一本書，找回人物與故事的脈絡。</p>
         </div>
-
-        <aside class="bookshelf-panel" id="work-shelf-section" aria-labelledby="shelf-title">
+        <div class="bookshelf-panel library-bookshelf" aria-labelledby="shelf-title">
           <div class="shelf-heading">
             <div>
-              <p class="scope-kicker">作品書架</p>
+              <p class="scope-kicker">館藏作品</p>
               <h2 id="shelf-title">選一本，回到故事裡</h2>
             </div>
             <span class="shelf-count"><strong id="work-count">1</strong> 部收錄</span>
@@ -62,41 +55,49 @@
             </button>
             <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
             <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
+            <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
+            <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
           </div>
           <div class="shelf-plank" aria-hidden="true"></div>
-          <p class="shelf-scope">
-            <span>資料範圍</span>
-            <strong data-coverage-label>正文第 1～164 章</strong>
-            <small>截止〈<span data-coverage-end>離經叛道</span>〉</small>
-          </p>
-        </aside>
+          <p class="shelf-hint">點選書冊進入人物誌</p>
+        </div>
       </section>
 
-      <section class="stat-strip" aria-label="資料統計">
-        <div>
-          <strong id="character-count">18</strong>
-          <span>位重要人物</span>
-        </div>
-        <div>
-          <strong id="relationship-count">19</strong>
-          <span>條人物關係</span>
-        </div>
-        <div>
-          <strong id="faction-count">3</strong>
-          <span>個主要勢力</span>
-        </div>
-        <div>
-          <strong>164</strong>
-          <span>章以內資料</span>
-        </div>
-      </section>
+      <div class="work-view" id="work-view" hidden>
+        <section class="work-masthead" aria-labelledby="work-title">
+          <a class="back-to-shelf" href="#library">← 返回作品書架</a>
+          <p class="eyebrow">人物關係誌</p>
+          <h1 id="work-title" data-work-title>武煉巔峰</h1>
+          <p class="work-byline"><span data-work-author>莫默</span> 著</p>
+          <p class="work-description" data-work-description></p>
+          <p class="work-coverage">
+            資料範圍：<strong data-coverage-label>正文第 1～164 章</strong>
+            <span>截止〈<span data-coverage-end>離經叛道</span>〉</span>
+          </p>
+        </section>
+
+        <section class="stat-strip" aria-label="資料統計">
+          <div>
+            <strong id="character-count">18</strong>
+            <span>位重要人物</span>
+          </div>
+          <div>
+            <strong id="relationship-count">19</strong>
+            <span>條人物關係</span>
+          </div>
+          <div>
+            <strong id="faction-count">3</strong>
+            <span>個主要勢力</span>
+          </div>
+          <div>
+            <strong id="coverage-chapter-count">164</strong>
+            <span>章以內資料</span>
+          </div>
+        </section>
 
       <section class="content-section explorer-section" id="character-explorer" aria-labelledby="explorer-title">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">人物索引</p>
-            <h2 id="explorer-title">從姓名，找回他在故事裡的位置</h2>
-          </div>
+          <h2 class="eyebrow section-label" id="explorer-title">人物索引</h2>
           <label class="work-picker">
             <span>選擇作品</span>
             <select id="work-select" aria-label="選擇作品"></select>
@@ -138,8 +139,7 @@
       <section class="content-section relationship-section" id="relationship-map" aria-labelledby="relationship-title">
         <div class="section-heading relationship-heading">
           <div>
-            <p class="eyebrow">人物關係圖</p>
-            <h2 id="relationship-title">一條線，接回一段故事</h2>
+            <h2 class="eyebrow section-label" id="relationship-title">人物關係圖</h2>
             <p>點選節點可查看人物資料；若圖面較小，也能使用下方的文字關係列表。</p>
           </div>
           <label>
@@ -169,19 +169,18 @@
           <ol id="relationship-list" class="relationship-list"></ol>
         </details>
       </section>
-
-    </main>
-
-    <footer>
-      <div class="brand footer-brand">
-        <span class="brand-seal" aria-hidden="true">閱</span>
-        <span><strong>閱絡</strong><small>小說人物關係誌</small></span>
+      <footer>
+        <div class="brand footer-brand">
+          <span class="brand-seal" aria-hidden="true">閱</span>
+          <span><strong>閱絡</strong><small>小說人物關係誌</small></span>
+        </div>
+        <p data-disclaimer>
+          本網站為非官方、非商業的閱讀輔助專案；人物摘要皆為重新整理，不提供小說原文。
+        </p>
+        <p>資料範圍：<span data-coverage-label>正文第 1～164 章</span>。</p>
+      </footer>
       </div>
-      <p data-disclaimer>
-        本網站為非官方、非商業的閱讀輔助專案；人物摘要皆為重新整理，不提供小說原文。
-      </p>
-      <p>資料範圍：<span data-coverage-label>正文第 1～164 章</span>。</p>
-    </footer>
+    </main>
 
     <dialog id="character-dialog" aria-labelledby="dialog-name">
       <button class="dialog-close" id="dialog-close" type="button" aria-label="關閉人物詳情">×</button>
