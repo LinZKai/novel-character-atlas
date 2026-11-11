@@ -25,6 +25,8 @@ const elements = {
   graph: document.querySelector("#relationship-graph"),
   legend: document.querySelector("#relationship-legend"),
   relationshipList: document.querySelector("#relationship-list"),
+  workShelf: document.querySelector("#work-shelf"),
+  workCount: document.querySelector("#work-count"),
   dialog: document.querySelector("#character-dialog"),
   dialogContent: document.querySelector("#dialog-content"),
   dialogClose: document.querySelector("#dialog-close")
@@ -70,6 +72,35 @@ const fillText = (selector, value) => {
   });
 };
 
+function renderWorkShelf() {
+  const bookMarkup = state.works
+    .map(
+      (work) => `
+        <button class="shelf-book${state.activeWork?.id === work.id ? " is-active" : ""}" type="button" data-work-id="${escapeHtml(work.id)}" aria-label="開啟《${escapeHtml(work.title)}》人物誌">
+          <span class="book-spine" aria-hidden="true"></span>
+          <span class="book-cover">
+            <small>${escapeHtml(work.author)} 著</small>
+            <strong>${escapeHtml(work.title)}</strong>
+            <em>人物關係誌</em>
+          </span>
+        </button>`
+    )
+    .join("");
+  const emptySlots = Array.from({ length: Math.max(2, 3 - state.works.length) }, () =>
+    '<div class="empty-book-slot" aria-label="待新增作品"><span>＋</span><strong>待新增</strong></div>'
+  ).join("");
+  elements.workShelf.innerHTML = bookMarkup + emptySlots;
+  elements.workCount.textContent = state.works.length;
+  elements.workShelf.querySelectorAll("[data-work-id]").forEach((book) => {
+    book.addEventListener("click", async () => {
+      const workId = book.dataset.workId;
+      elements.workSelect.value = workId;
+      if (state.activeWork?.id !== workId) await loadWork(workId);
+      document.querySelector("#character-explorer").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+}
+
 function renderWorkMeta() {
   const work = state.activeWork;
   fillText("[data-work-title]", work.title);
@@ -81,6 +112,7 @@ function renderWorkMeta() {
   document.querySelector("#character-count").textContent = state.characters.length;
   document.querySelector("#relationship-count").textContent = state.relationships.length;
   document.querySelector("#faction-count").textContent = state.factions.length;
+  renderWorkShelf();
 }
 
 function populateFilters() {
@@ -253,6 +285,7 @@ async function init() {
   elements.workSelect.innerHTML = state.works
     .map((work) => `<option value="${escapeHtml(work.id)}">${escapeHtml(work.title)}</option>`)
     .join("");
+  renderWorkShelf();
   await loadWork(state.works[0].id);
 }
 

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="閱絡是一個整理長篇小說人物、勢力與關係的閱讀輔助網站，第一部示範作品為《武煉巔峰》。"
+      content="閱絡是一個整理長篇小說人物、勢力與關係的閱讀輔助網站，目前收錄《武煉巔峰》。"
     />
     <meta name="theme-color" content="#201c18" />
     <title>閱絡｜小說人物關係誌</title>
@@ -23,9 +23,9 @@
         </span>
       </a>
       <nav aria-label="主要導覽">
+        <a href="#work-shelf-section">作品書架</a>
         <a href="#character-explorer">人物誌</a>
         <a href="#relationship-map">關係圖</a>
-        <a href="#project-rules">延伸方式</a>
       </nav>
     </header>
 
@@ -43,19 +43,32 @@
           </div>
         </div>
 
-        <aside class="work-scope-card" aria-labelledby="scope-title">
-          <p class="scope-kicker">本次示範作品</p>
-          <h2 id="scope-title" data-work-title>武煉巔峰</h2>
-          <p class="scope-author">作者：<span data-work-author>莫默</span></p>
-          <div class="chapter-stamp">
+        <aside class="bookshelf-panel" id="work-shelf-section" aria-labelledby="shelf-title">
+          <div class="shelf-heading">
+            <div>
+              <p class="scope-kicker">作品書架</p>
+              <h2 id="shelf-title">選一本，回到故事裡</h2>
+            </div>
+            <span class="shelf-count"><strong id="work-count">1</strong> 部收錄</span>
+          </div>
+          <div class="work-shelf" id="work-shelf" aria-label="已收錄與待新增作品">
+            <button class="shelf-book is-active" type="button" data-work-id="martial-peak">
+              <span class="book-spine" aria-hidden="true"></span>
+              <span class="book-cover">
+                <small>莫默 著</small>
+                <strong>武煉巔峰</strong>
+                <em>人物關係誌</em>
+              </span>
+            </button>
+            <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
+            <div class="empty-book-slot"><span>＋</span><strong>待新增</strong></div>
+          </div>
+          <div class="shelf-plank" aria-hidden="true"></div>
+          <p class="shelf-scope">
             <span>資料範圍</span>
             <strong data-coverage-label>正文第 1～164 章</strong>
             <small>截止〈<span data-coverage-end>離經叛道</span>〉</small>
-          </div>
-          <p data-work-description>
-            聚焦凌霄閣初期、九陰凝元露事件與傳承洞天篇，截止於楊開準備離宗出遊以前。
           </p>
-          <p class="scope-note">所有摘要皆以此進度為準，不混入後續劇情。</p>
         </aside>
       </section>
 
@@ -81,8 +94,8 @@
       <section class="content-section explorer-section" id="character-explorer" aria-labelledby="explorer-title">
         <div class="section-heading">
           <div>
-            <p class="eyebrow">人物誌</p>
-            <h2 id="explorer-title">他是誰？從這裡找回記憶</h2>
+            <p class="eyebrow">人物索引</p>
+            <h2 id="explorer-title">從姓名，找回他在故事裡的位置</h2>
           </div>
           <label class="work-picker">
             <span>選擇作品</span>
@@ -157,35 +170,6 @@
         </details>
       </section>
 
-      <section class="content-section rules-section" id="project-rules" aria-labelledby="rules-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">不只做完這一頁</p>
-            <h2 id="rules-title">同一套規則，向兩個方向生長</h2>
-          </div>
-        </div>
-
-        <div class="growth-grid">
-          <article>
-            <span class="growth-number">01</span>
-            <h3>繼續同一部作品</h3>
-            <p>提高章節上限後，依格式加入新人物、勢力與關係，不必重做頁面或改寫介面。</p>
-            <code>data/works/martial-peak/</code>
-          </article>
-          <article>
-            <span class="growth-number">02</span>
-            <h3>收錄另一部作品</h3>
-            <p>建立新的作品資料夾並登記索引，搜尋、卡片與關係圖會沿用同一組元件。</p>
-            <code>data/works/{work-id}/</code>
-          </article>
-          <article>
-            <span class="growth-number">03</span>
-            <h3>沒有原文也能口述</h3>
-            <p>AI 先整理、追問與預覽；提供者確認後才寫入，避免把猜測當成正式設定。</p>
-            <code>整理 → 追問 → 預覽 → 確認 → 寫入</code>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer>
